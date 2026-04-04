@@ -5,6 +5,7 @@ import com.vitor.relational_database_library.entites.dto.CreateAuthorDto;
 import com.vitor.relational_database_library.repositories.AuthorRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,7 +23,8 @@ public class AuthorService {
         var entity = new Author(
                 null,
                 dto.name(),
-                dto.nationality());
+                dto.nationality(),
+                new ArrayList<>());
 
         var authorId = authorRepository.save(entity);
 

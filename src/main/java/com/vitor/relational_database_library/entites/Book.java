@@ -2,6 +2,7 @@ package com.vitor.relational_database_library.entites;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -21,17 +22,25 @@ public class Book {
     @Column(name = "yearPublication")
     private Integer year;
 
+    @ManyToMany
+    @JoinTable(name = "book_author",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "author_id"))
+    private List<Author> authors;
+
     public Book() {
     }
 
     public Book(UUID bookId,
                 String name,
                 String genre,
-                Integer year) {
+                Integer year,
+                List<Author> authors) {
         this.bookId = bookId;
         this.name = name;
         this.genre = genre;
         this.year = year;
+        this.authors = authors;
     }
 
     public UUID getBookId() {
@@ -64,5 +73,13 @@ public class Book {
 
     public void setYear(Integer year) {
         this.year = year;
+    }
+
+    public List<Author> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(List<Author> authors) {
+        this.authors = authors;
     }
 }

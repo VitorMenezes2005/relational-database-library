@@ -5,10 +5,7 @@ import com.vitor.relational_database_library.entites.dto.CreateBookDto;
 import com.vitor.relational_database_library.services.BookService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
@@ -35,5 +32,14 @@ public class BookController {
         List<Book> list = bookService.listAll();
 
         return ResponseEntity.ok().body(list);
+    }
+
+    @PostMapping("/{id}/author/{authorId}")
+    public ResponseEntity<Book> associateBookAuthor(@PathVariable("id") String bookId,
+                                                    @PathVariable("authorId") String authorId){
+
+        bookService.associateBookAuthor(bookId, authorId);
+        
+        return ResponseEntity.ok().build();
     }
 }

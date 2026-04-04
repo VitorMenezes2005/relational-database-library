@@ -1,7 +1,9 @@
 package com.vitor.relational_database_library.entites;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -18,13 +20,21 @@ public class Author {
     @Column(name = "nationality")
     private String nationality;
 
+    @JsonIgnore
+    @ManyToMany(mappedBy = "authors")
+    private List<Book> books;
+
     public Author() {
     }
 
-    public Author(UUID authorId, String name, String nationality) {
+    public Author(UUID authorId,
+                  String name,
+                  String nationality,
+                  List<Book> books) {
         this.authorId = authorId;
         this.name = name;
         this.nationality = nationality;
+        this.books = books;
     }
 
     public UUID getAuthorId() {
@@ -49,5 +59,13 @@ public class Author {
 
     public void setNationality(String nationality) {
         this.nationality = nationality;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
 }

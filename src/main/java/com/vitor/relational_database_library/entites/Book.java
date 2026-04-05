@@ -28,6 +28,9 @@ public class Book {
             inverseJoinColumns = @JoinColumn(name = "author_id"))
     private List<Author> authors;
 
+    @ManyToMany(mappedBy = "books")
+    private List<Loan> loans;
+
     public Book() {
     }
 

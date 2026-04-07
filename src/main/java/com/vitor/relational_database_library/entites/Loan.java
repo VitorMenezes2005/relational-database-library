@@ -19,21 +19,15 @@ public class Loan {
     @Column(name = "loanDate")
     private Instant loanDate;
 
-    @ManyToMany
-    @JoinTable(name = "loan_book",
-            joinColumns = @JoinColumn(name = "loan_id"),
-            inverseJoinColumns = @JoinColumn(name = "book_id"))
-    private List<Book> books;
+
 
     public Loan() {
     }
 
     public Loan(UUID loanId,
-                Instant loanDate,
-                List<Book> books) {
+                Instant loanDate) {
         this.loanId = loanId;
         this.loanDate = loanDate;
-        this.books = books;
     }
 
     public UUID getLoanId() {
@@ -50,13 +44,5 @@ public class Loan {
 
     public void setLoanDate(Instant loanDate) {
         this.loanDate = loanDate;
-    }
-
-    public List<Book> getBooks() {
-        return books;
-    }
-
-    public void setBooks(List<Book> books) {
-        this.books = books;
     }
 }

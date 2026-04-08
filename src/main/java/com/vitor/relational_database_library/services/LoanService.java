@@ -22,7 +22,8 @@ public class LoanService {
         var entity = new Loan(
                 null,
                 Instant.now(),
-                dto.description());
+                dto.description(),
+                null);
 
         var id = loanRepository.save(entity);
 

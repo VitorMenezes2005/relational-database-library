@@ -22,15 +22,21 @@ public class Loan {
     @Column(name = "description")
     private String description;
 
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    private Client client;
+
     public Loan() {
     }
 
     public Loan(UUID loanId,
                 Instant loanDate,
-                String description) {
+                String description,
+                Client client) {
         this.loanId = loanId;
         this.loanDate = loanDate;
         this.description = description;
+        this.client = client;
     }
 
     public UUID getLoanId() {
@@ -55,5 +61,13 @@ public class Loan {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 }

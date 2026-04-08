@@ -19,15 +19,18 @@ public class Loan {
     @Column(name = "loanDate")
     private Instant loanDate;
 
-
+    @Column(name = "description")
+    private String description;
 
     public Loan() {
     }
 
     public Loan(UUID loanId,
-                Instant loanDate) {
+                Instant loanDate,
+                String description) {
         this.loanId = loanId;
         this.loanDate = loanDate;
+        this.description = description;
     }
 
     public UUID getLoanId() {
@@ -44,5 +47,13 @@ public class Loan {
 
     public void setLoanDate(Instant loanDate) {
         this.loanDate = loanDate;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

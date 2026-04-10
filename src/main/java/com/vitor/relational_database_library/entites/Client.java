@@ -1,5 +1,6 @@
 package com.vitor.relational_database_library.entites;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -23,6 +24,7 @@ public class Client {
     @Column(name = "password")
     private Integer password;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "client")
     private List<Loan> loans;
 

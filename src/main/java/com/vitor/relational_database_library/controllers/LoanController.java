@@ -1,6 +1,7 @@
 package com.vitor.relational_database_library.controllers;
 
 import com.vitor.relational_database_library.entites.Loan;
+import com.vitor.relational_database_library.entites.LoanBook;
 import com.vitor.relational_database_library.entites.dto.CreateLoanDto;
 import com.vitor.relational_database_library.services.LoanService;
 import org.springframework.http.ResponseEntity;
@@ -28,8 +29,8 @@ public class LoanController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Loan>> listAll(){
-        List<Loan> list = loanService.listLoans();
+    public ResponseEntity<List<LoanBook>> listAll(){
+        List<LoanBook> list = loanService.listLoans();
 
         return ResponseEntity.ok().body(list);
     }
@@ -39,6 +40,15 @@ public class LoanController {
                                                     @PathVariable("clientId") String clientId){
 
         loanService.associateClient(loanId, clientId);
+
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/{id}/book/{bookId}")
+    public ResponseEntity<Loan> associateLoanBook(@PathVariable("id") String loanId,
+                                                  @PathVariable("bookId") String bookId){
+
+        loanService.associateBook(loanId, bookId);
 
         return ResponseEntity.ok().build();
     }

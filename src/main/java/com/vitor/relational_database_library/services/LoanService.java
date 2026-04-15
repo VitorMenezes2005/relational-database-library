@@ -5,6 +5,7 @@ import com.vitor.relational_database_library.entites.Loan;
 import com.vitor.relational_database_library.entites.LoanBook;
 import com.vitor.relational_database_library.entites.LoanBookId;
 import com.vitor.relational_database_library.entites.dto.CreateLoanDto;
+import com.vitor.relational_database_library.entites.dto.LoanBookResponseDto;
 import com.vitor.relational_database_library.repositories.BookRepository;
 import com.vitor.relational_database_library.repositories.ClientRepository;
 import com.vitor.relational_database_library.repositories.LoanBookRepository;
@@ -48,8 +49,11 @@ public class LoanService {
         return id.getLoanId();
     }
 
-    public List<LoanBook> listLoans(){
-        return loanBookRepository.findAll();
+    public List<LoanBookResponseDto> listLoans(){
+        return loanBookRepository.findAll()
+                .stream()
+                .map(LoanBookResponseDto::from)
+                .toList();
     }
 
     public void associateClient(String loanId, String clientId){

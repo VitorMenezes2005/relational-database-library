@@ -1,6 +1,7 @@
 package com.vitor.relational_database_library.controllers;
 
 import com.vitor.relational_database_library.entites.Client;
+import com.vitor.relational_database_library.entites.dto.ClientResponseDto;
 import com.vitor.relational_database_library.entites.dto.CreateClientDto;
 import com.vitor.relational_database_library.services.ClientService;
 import org.springframework.http.ResponseEntity;
@@ -31,8 +32,8 @@ public class ClientController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Client>> listAll(){
-        List<Client> list = clientService.listClients();
+    public ResponseEntity<List<ClientResponseDto>> listAll(){
+        List<ClientResponseDto> list = clientService.listClients();
 
         return ResponseEntity.ok().body(list);
     }

@@ -3,6 +3,7 @@ package com.vitor.relational_database_library.controllers;
 import com.vitor.relational_database_library.entites.Loan;
 import com.vitor.relational_database_library.entites.LoanBook;
 import com.vitor.relational_database_library.entites.dto.CreateLoanDto;
+import com.vitor.relational_database_library.entites.dto.LoanBookResponseDto;
 import com.vitor.relational_database_library.services.LoanService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -29,8 +30,8 @@ public class LoanController {
     }
 
     @GetMapping
-    public ResponseEntity<List<LoanBook>> listAll(){
-        List<LoanBook> list = loanService.listLoans();
+    public ResponseEntity<List<LoanBookResponseDto>> listAll(){
+        List<LoanBookResponseDto> list = loanService.listLoans();
 
         return ResponseEntity.ok().body(list);
     }

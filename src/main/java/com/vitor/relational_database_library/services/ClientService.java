@@ -1,6 +1,7 @@
 package com.vitor.relational_database_library.services;
 
 import com.vitor.relational_database_library.entites.Client;
+import com.vitor.relational_database_library.entites.dto.ClientResponseDto;
 import com.vitor.relational_database_library.entites.dto.CreateClientDto;
 import com.vitor.relational_database_library.repositories.ClientRepository;
 import org.springframework.stereotype.Service;
@@ -31,7 +32,10 @@ public class ClientService {
         return id.getClienteId();
     }
 
-    public List<Client> listClients(){
-        return clientRepository.findAll();
+    public List<ClientResponseDto> listClients(){
+        return clientRepository.findAll()
+                .stream()
+                .map(client -> new ClientResponseDto(client.getName(), client.getEmail()))
+                .toList();
     }
 }

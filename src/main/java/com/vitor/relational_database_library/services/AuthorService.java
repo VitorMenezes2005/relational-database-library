@@ -34,4 +34,8 @@ public class AuthorService {
     public List<Author> listAll(){
         return authorRepository.findAll();
     }
+
+    public void delete(UUID id){
+        authorRepository.deleteById(id);
+    }
 }

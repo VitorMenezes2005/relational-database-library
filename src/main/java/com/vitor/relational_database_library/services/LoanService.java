@@ -49,11 +49,15 @@ public class LoanService {
         return id.getLoanId();
     }
 
-    public List<LoanBookResponseDto> listLoans(){
+    public List<LoanBookResponseDto> listLoansAssociates(){
         return loanBookRepository.findAll()
                 .stream()
                 .map(LoanBookResponseDto::from)
                 .toList();
+    }
+
+    public List<Loan> listAll(){
+        return loanRepository.findAll();
     }
 
     public void associateClient(String loanId, String clientId){

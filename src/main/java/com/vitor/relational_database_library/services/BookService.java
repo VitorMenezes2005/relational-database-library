@@ -55,4 +55,8 @@ public class BookService {
 
         bookRepository.save(book);
     }
+
+    public void delete(UUID id){
+        bookRepository.deleteById(id);
+    }
 }

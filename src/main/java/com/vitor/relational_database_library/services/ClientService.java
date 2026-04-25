@@ -38,4 +38,8 @@ public class ClientService {
                 .map(client -> new ClientResponseDto(client.getName(), client.getEmail()))
                 .toList();
     }
+
+    public void delete(UUID id){
+        clientRepository.deleteById(id);
+    }
 }
